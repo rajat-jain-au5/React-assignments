@@ -44,7 +44,7 @@ export function fetchTodorequest(){
 export function fetchTodoSuccess(json){
     return{
         type:"FETCH_SUCCESS",
-        payload:json
+        payload:json.data
     }
 }
 export function fetchError(err){
@@ -53,15 +53,19 @@ export function fetchError(err){
         payload:err
 }
 }
-export function getTodo(dispatch) {
-   this.props.dispatch(fetchTodorequest());
-   let req = axios.get("https://jsonplaceholder.typicode.com/todos")
+
+export function getTodo() {
+    return function(dispatch) {
+        dispatch(fetchTodorequest())
+        return  axios.get("https://jsonplaceholder.typicode.com/todos")
         .then(response => {
             console.log(response)
             response.json();
         })
-        .then(json =>
-           this.props.dispatch(fetchTodoSuccess(json))
+        .then(json =>{
+            console.log(json)
+         dispatch(fetchTodoSuccess(json))}
           )
-        .catch(err=>this.props.dispatch(fetchError(err)))
+        .catch(err=>dispatch(fetchError(err)));
+    };
 }
