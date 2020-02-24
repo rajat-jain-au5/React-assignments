@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 export function handleInput(e) {
     return {
         type: "edit_input",
@@ -35,37 +35,56 @@ export function addTodoToList() {
     }
 }
 
-export function fetchTodorequest(){
-    return{
-        type:"FETCH_REQUEST",
-    }
-}
+// export function fetchTodorequest(){
+//     return{
+      
+//     }
+// }
 
-export function fetchTodoSuccess(json){
-    return{
-        type:"FETCH_SUCCESS",
-        payload:json.data
-    }
-}
-export function fetchError(err){
-    return {
-        type:"FETCH_ERROR",
-        payload:err
-}
-}
+// export function fetchTodoSuccess(json){
+//     return{
+//         type:"FETCH_SUCCESS",
+//         payload:json.data
+//     }
+// }
+// export function fetchError(err){
+//     return {
+//         type:"FETCH_ERROR",
+//         payload:err
+// }
+// }
 
-export function getTodo() {
-    return function(dispatch) {
-        dispatch(fetchTodorequest())
-        return  axios.get("https://jsonplaceholder.typicode.com/todos")
-        .then(response => {
-            console.log(response)
-            response.json();
+// export function getTodo() {
+//     return function(dispatch) {
+//         dispatch({  type:"FETCH_REQUEST"})
+//         return  axios.get("https://jsonplaceholder.typicode.com/todos")
+//         .then(response => {
+//             console.log(response)
+//          response.json()
+//         })
+//         .then(json =>{
+//          dispatch({  type:"FETCH_SUCCESS",payload:json.data })
+//          console.log(json.data)
+//         })
+//         .catch(err=>dispatch({ type:"FETCH_ERROR",payload:err }));
+//     };
+// }
+export function getTodo(){
+    let todos=fetch("https://jsonplaceholder.typicode.com/todos")
+    return (dispatch)=>{
+       dispatch({
+           type:"FETCH _REQUEST",
+       })
+        todos.then(res =>{
+            res.json().then(data=>{
+                console.log(data)
+                return dispatch({
+                    type:"FETCH_SUCCESS",
+                    payload:data,
+                    loading:false
+                })
+            })
         })
-        .then(json =>{
-            console.log(json)
-         dispatch(fetchTodoSuccess(json))}
-          )
-        .catch(err=>dispatch(fetchError(err)));
-    };
+
+    }
 }

@@ -2,19 +2,17 @@ import React from 'react';
 import { connect } from "react-redux";
 import {getTodo} from '../actionCreators/action'
 import { bindActionCreators } from 'redux';
+import List5 from '../day5/List5'
 class D5L5 extends React.Component{
+    // componentDidMount = () => {
+    //     setTimeout(this.getTodo, 3000);
+    //   };
     render(){
         return (
             <div>
-                <button onClick={()=>{this.props.getTodo()}}>Get Todo</button>
-                <ul>
-                    {this.props.todosApi.map((item,index)=>{
-                        return(
-                        <li key={index}>{item}</li>
-                        )
-                    })
-                    }
-                </ul>
+                <button onClick={()=>{this.props.getTodo()}}>Retry</button>
+                
+                <List5 />
             </div>
         )
     }
