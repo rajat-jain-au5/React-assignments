@@ -4,15 +4,15 @@ export default class List extends React.Component{
     state={
         color:getRandomColor()
     }
-    // componentDidUpdate(prevProps) {
-    //     let newstate = {...this.state }
-    //     if (this.props.todoList !== prevProps.todoList) {
-    //         this.props.todoList.map(todoColor => { newstate[todoColor.user] = newstate[todoColor.user] ? newstate[todoColor.user] : getRandomColor()
-    //         return null }
-    //         )
-    //         this.setState(newstate)
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        let newstate = {...this.state }
+        if (this.props.todoList !== prevProps.todoList) {
+            this.props.todoList.map(todoColor => { newstate[todoColor.user] = newstate[todoColor.user] ? newstate[todoColor.user] : getRandomColor()
+            return null }
+            )
+            this.setState(newstate)
+        }
+    }
 
     render(){
         return(
