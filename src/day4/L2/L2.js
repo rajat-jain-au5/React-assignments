@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from './Input'
 import List from './List'
-export default class L2 extends React.Component{
+export default class D4L2 extends React.Component{
 
     state={
         title:"",

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Input1 extends React.Component {
+export default class L2 extends React.Component {
     state={
         title:"",
         list:[]

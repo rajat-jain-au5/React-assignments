@@ -1,6 +1,6 @@
 import React from 'react';
 import InputChild from './InputChild'
-export default class L1 extends React.Component {
+export default class D4L1 extends React.Component {
 
     state = {
         title: ""

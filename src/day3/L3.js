@@ -4,9 +4,10 @@ export default class L3 extends React.Component {
     state = {
         title: "",
         date: "",
+        day:"Sunday",
         list: [],
-        filteredTodos: [],
-        day:""
+        filteredTodos: []
+       
     }
     handleSubmit = () => {
         let newTodo=[...this.state.list]
@@ -17,43 +18,28 @@ export default class L3 extends React.Component {
         }
         newTodo.push(todo)
         this.setState({
-            list:newTodo,
-            filteredTodos:newTodo,
             title: "",
-            date: ""
-        }, () => { console.log(this.state) })
+            date: "",
+            list:newTodo,
+            filteredTodos:newTodo
+           
+        })
     }
-    // handleDayChange=(e)=>
-    // {
-    //     let day=e.target.value
-    //     let list=[...this.state.list]
-    //     if(day==="all"){
-    //      this.setState({
-    //          filteredTodos:[...this.state.list],
-
-    //         })
-    //     return
-    //     }
-    //     var filteredResult=list.filter(todo=>todo.day===day)
-    //     this.setState({
-    //   filteredTodos:filteredResult
-    //     })
-
-    //  }
+ 
     render() {
         return (
             <div>
                 <div>
                     <input type="text" onChange={(e) => { this.setState({ title: e.target.value }) }} placeholder="enter todo" value={this.state.title} />
                     <input type="date" onChange={(e) => { this.setState({ date: e.target.value }) }} value={this.state.date} />
-                    <input type="submit" onClick={() => { this.handleSubmit() }} />
+                    <input type="submit" onClick={ this.handleSubmit} disabled={!this.state.title} />
                 </div>
                 <select
                     onChange={e =>
                         this.setState({day:e.target.value})
-                    } name="day"
+                    } 
                 >
-                    <option value="all">ALL</option>
+                   
                     <option value="Sunday">Sunday</option>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
@@ -67,7 +53,7 @@ export default class L3 extends React.Component {
                     {
                         this.state.list.map((item, index) => 
                             this.state.day===item.day &&
-                                <li key={index}>{item.title}  {"   "} {item.date} {" "}{item.day}</li>
+                                (<li key={index}>{item.title}  {"   "} {item.date} {" "}{item.day}</li>)
                                 
                             
                         )
