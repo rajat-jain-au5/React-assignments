@@ -43,10 +43,14 @@ function appReducer(state = intialState, action) {
             stateCopy.title2 = ""
             stateCopy.deadline = ""
             return stateCopy
-        
+            
+            case "FETCH_REQUEST":
+                stateCopy.loading=action.payload
+                return stateCopy
+           
          case "FETCH_SUCCESS":
              stateCopy.todosApi=[...action.payload] 
-             stateCopy.loading=true 
+             stateCopy.loading=!stateCopy.loading 
              console.log(stateCopy)
              return stateCopy
         

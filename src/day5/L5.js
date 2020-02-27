@@ -8,18 +8,22 @@ class D5L5 extends React.Component{
     //     setTimeout(this.getTodo, 3000);
     //   };
     render(){
+        console.log(this.props.loading );
         return (
             <div>
                 <button onClick={()=>{this.props.getTodo()}}>Retry</button>
-                
-                <List5 />
+                <div>
+                {this.props.loading ? <div className={"loader"}/>: <List5 /> }
+                   
+                </div>
+            
             </div>
         )
     }
 }
 
 const mapStateToProps=(state)=>{
-   return state
+   return {loading:state.loading}
 }
 const mapDispatchToProps=(dispatch)=>{
     // return{getTodo:()=>dispatch(getTodo)}

@@ -35,24 +35,7 @@ export function addTodoToList() {
     }
 }
 
-// export function fetchTodorequest(){
-//     return{
-      
-//     }
-// }
 
-// export function fetchTodoSuccess(json){
-//     return{
-//         type:"FETCH_SUCCESS",
-//         payload:json.data
-//     }
-// }
-// export function fetchError(err){
-//     return {
-//         type:"FETCH_ERROR",
-//         payload:err
-// }
-// }
 
 // export function getTodo() {
 //     return function(dispatch) {
@@ -73,15 +56,17 @@ export function getTodo(){
     let todos=fetch("https://jsonplaceholder.typicode.com/todos")
     return (dispatch)=>{
        dispatch({
-           type:"FETCH _REQUEST",
+           type:"FETCH_REQUEST",
+           payload:true
        })
+       
         todos.then(res =>{
-            res.json().then(data=>{
+            res.json()
+            .then(data=>{
                 console.log(data)
                 return dispatch({
                     type:"FETCH_SUCCESS",
                     payload:data,
-                    loading:false
                 })
             })
         })
